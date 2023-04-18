@@ -2,7 +2,7 @@ import praw
 import sqlite3
 import os
 from dotenv import load_dotenv
-from textblob import TextBlob
+from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
 
 # Load environment variables from .env file
 load_dotenv()
@@ -52,7 +52,9 @@ politics_sub = reddit_read_only.subreddit('politics')
 # Loop through each thread
 for thread in politics_sub.hot(limit=10):
     # Analyze thread title sentiment
-    title_sentiment = TextBlob(thread.title).sentiment.polarity
+    sia = SIA()
+    title_scores = sia.polarity_scores(thread.title)
+    title_sentiment = title_scores['compound']
 
     # Insert data into threads table
     cur.execute('''INSERT INTO Threads (thread_title, utc_posted, upvotes, title_sentiment) 
@@ -68,7 +70,8 @@ for thread in politics_sub.hot(limit=10):
             continue
         
         # Analyze comment sentiment
-        comment_sentiment = TextBlob(comment.body).sentiment.polarity
+        comment_score = sia.polarity_scores(comment.body)
+        comment_sentiment = comment_score['compound']
 
         if comment.author is None:
             continue
