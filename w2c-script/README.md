@@ -1,6 +1,5 @@
 # The Story Behind the Script
-Imagine waking up to a notification that over 100 of the your coworker's W2s contained errors due to a malfunction in the payroll system. 
-That's exactly what happened to us, and the finance department knew that we had to take immediate action to correct the mistakes and issue new, accurate W2s.
+Our team received a notification that more than 100 of our coworker's W2s contained errors due to a payroll system malfunction. The finance department attempted to find prebuilt software solutions to correct these issues, but failed. We  promptly recognized the urgency of correcting the mistakes and issuing new, accurate W2s.
 
 To accomplish this, I wrote a Python script that would read employee data from the corrected CSV file and generate W2-Cs as PDF files. 
 The script uses the PyPDF2 library to manipulate PDFs and the ReportLab library to generate new PDFs with corrected data.
