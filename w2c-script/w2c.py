@@ -356,7 +356,7 @@ for employee in employee_data[1:]:
     # take first file and open it 
     templatePDF = PdfReader(open("template.pdf", "rb"))
 
-    # take the 2nd fiel and open it
+    # take the 2nd file and open it
     cPDF = PdfReader(open("c.pdf", "rb"))
 
     for i in range(6):
