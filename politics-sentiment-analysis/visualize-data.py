@@ -21,10 +21,14 @@ final_df = joined_df[['thread_title', 'title_sentiment', 'comment_sentiment']]
 grouped_df = final_df.groupby('thread_title').agg({'title_sentiment': 'mean', 'comment_sentiment': 'mean'})
 
 # Plot the sentiment values
-fig, ax = plt.subplots(figsize=(10,8))
+fig, ax = plt.subplots(figsize=(10,16))
 grouped_df.plot(kind='barh', ax=ax)
 ax.set_xlabel('Sentiment')
 ax.set_ylabel('Thread Title')
 ax.set_title('Thread Sentiment and Overall Comment Sentiment')
-plt.show()
+plt.tight_layout()
 
+# Set the position of the current subplot
+ax.set_position([0.4, 0.55, 0.585, 0.4])
+
+plt.show()
